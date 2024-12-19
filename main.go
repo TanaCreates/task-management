@@ -19,7 +19,7 @@ func main() {
 	// Connect to database
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
-		log.Fatal("Error initializing database connection:", err)
+		log.Fatal("Error initializing database connection:", err) 
 	}
 	defer db.Close()
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Print("Enter your choice: ")
 		choiceInput, _ := reader.ReadString('\n')
 		choiceInput = sanitizeInput(choiceInput)
-
+//conversion int>string
 		choice, err := strconv.Atoi(choiceInput)
 		if err != nil {
 			log.Println("Invalid input. Please enter a number.")
@@ -68,7 +68,7 @@ func main() {
 	}
 }
 
-// Function to create the "user" table
+// create the "user" table
 func createUserTable(db *sql.DB) {
 	query := `CREATE TABLE IF NOT EXISTS "user" (
 		user_id SERIAL PRIMARY KEY,
@@ -80,7 +80,7 @@ func createUserTable(db *sql.DB) {
 	}
 }
 
-// Function to create the "task" table
+//create the "task" table
 func createTaskTable(db *sql.DB) {
 	query := `CREATE TABLE IF NOT EXISTS "task"(
 		task_id SERIAL PRIMARY KEY,
@@ -130,7 +130,6 @@ func logIn(db *sql.DB) int {
 		return 0
 	}
 
-	// Sanitize input
 	username = sanitizeInput(username)
 
 	// Query the database to check if the username exists
